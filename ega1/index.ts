@@ -1,17 +1,18 @@
 import Code from './codes/Code';
-import NaturalCode from './codes/NaturalCode';
 import RandomCode from './codes/RandomCode';
-import SquareCode from './codes/SquareCode';
-import { N } from './constants/constants';
+import { MODE, N, SEED } from './constants/constants';
 import random from 'random';
+import { generateCode } from './util/generateCode';
 
-random.use(123);
-RandomCode.initMap();
+if(MODE === 1){
+  if(SEED) random.use(SEED);
+  RandomCode.initMap();
+}
 
 let max = new Code();
 for (let i = 0; i < N; i++) {
   let maxChanged = false;
-  const code = new RandomCode();
+  const code = generateCode(MODE);
   code.generate();
 
   if (code.getFitness() > max.getFitness()) {
