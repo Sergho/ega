@@ -10,13 +10,17 @@ RandomCode.initMap();
 
 let max = new Code();
 for (let i = 0; i < N; i++) {
+  let maxChanged = false;
   const code = new RandomCode();
   code.generate();
 
-  if (code.getFitness() > max.getFitness()) max = code;
+  if (code.getFitness() > max.getFitness()) {
+    max = code;
+    maxChanged = true;
+  }
 
   console.log(
-    `#${i}\t Current: ${code.getPreview()},\t Max: ${max.getPreview()}`
+    `#${i}\t Current: ${code.getPreview()},\t Max: ${max.getPreview()}\t${maxChanged ? '(Max changed)' : ''}`
   );
 }
 
