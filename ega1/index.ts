@@ -14,7 +14,7 @@ for (let i = 0; i < N; i++) {
   }
 
   console.log(
-    `#${i}\t Current: ${code.getPreview()},\t Max: ${max.getPreview()}\t${
+    `#${i}\tCurrent: ${code.getPreview()},\tMax: ${max.getPreview()}\t${
       maxChanged ? '(Max changed)' : ''
     }`
   );
