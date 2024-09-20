@@ -22,6 +22,10 @@ for (let i = 0; i < N; i++) {
       maxChanged ? '(Max changed)' : ''
     }`
   );
+  console.log(`Close(${close.length}):`);
+  for (const closeItem of close) {
+    console.log(closeItem.getPreview());
+  }
 }
 
 console.log('Result:', max.getPreview());
