@@ -5,6 +5,11 @@ import { popRandom } from './util/popRandom';
 let max = new NaturalCode();
 max.generate();
 let close: NaturalCode[] = max.getClose(NaturalCode);
+console.log(`Init: ${max.getPreview()}`)
+console.log(`Close(${close.length}):`);
+for (const closeItem of close) {
+  console.log(closeItem.getPreview());
+}
 for (let i = 0; i < N; i++) {
   let maxChanged = false;
   if (close.length === 0) break;
