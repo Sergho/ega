@@ -1,0 +1,25 @@
+import Code from '../codes/Code';
+import NaturalCode from '../codes/NaturalCode';
+import RandomCode from '../codes/RandomCode';
+import SquareCode from '../codes/SquareCode';
+
+export enum CodeType {
+  Random = 0,
+  Natural = 1,
+  Square = 2,
+}
+export class GenerateCodeOptions {
+  codeSize: number;
+  initialValue?: number;
+}
+export const createCode = (
+  mode: CodeType,
+  options: GenerateCodeOptions
+): Code => {
+  const codes = [
+    new RandomCode(options.codeSize, options?.initialValue),
+    new NaturalCode(options.codeSize, options?.initialValue),
+    new SquareCode(options.codeSize, options?.initialValue),
+  ];
+  return codes[mode];
+};
