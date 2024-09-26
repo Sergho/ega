@@ -2,12 +2,8 @@ import Code from '../codes/Code';
 import NaturalCode from '../codes/NaturalCode';
 import RandomCode from '../codes/RandomCode';
 import SquareCode from '../codes/SquareCode';
+import { CodeType } from './CodeType.enum';
 
-export enum CodeType {
-  Random = 0,
-  Natural = 1,
-  Square = 2,
-}
 export class GenerateCodeOptions {
   codeSize: number;
   initialValue?: number;

@@ -1,6 +1,6 @@
 import Code from '../codes/Code';
-import SquareCode from '../codes/SquareCode';
-import { CodeType, createCode } from '../util/createCode';
+import { CodeType } from '../util/CodeType.enum';
+import { createCode } from '../util/createCode';
 
 export class MCSearchOptions {
   iterationsCount: number;

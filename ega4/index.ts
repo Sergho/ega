@@ -1,8 +1,9 @@
 import { MCSearch } from './search/MCSearch';
 import { L, N } from './constants/constants';
-import { CodeType } from './util/createCode';
+import { CodeType } from './util/CodeType.enum';
+import { DepthSearch } from './search/DepthSearch';
 
-const result = MCSearch({
+const result = DepthSearch({
   iterationsCount: N,
   codeSize: L,
   codeType: CodeType.Natural,

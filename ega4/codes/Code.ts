@@ -25,6 +25,28 @@ class Code {
   getFitness(): number {
     return 0;
   }
+
+  getClose<T extends Code>(type: {
+    new (size: number, code?: number): T;
+  }): T[] {
+    const close: T[] = [];
+    const binary = this.getBinary();
+    for (let i = 0; i < this.size; i++) {
+      let pushed;
+      if (binary[i] === '1')
+        pushed = new type(
+          this.size,
+          this.code - Math.pow(2, this.size - i - 1)
+        );
+      else
+        pushed = new type(
+          this.size,
+          this.code + Math.pow(2, this.size - i - 1)
+        );
+      close.push(pushed);
+    }
+    return close;
+  }
 }
 
 export default Code;
