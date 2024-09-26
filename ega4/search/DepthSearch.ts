@@ -1,15 +1,10 @@
 import Code from '../codes/Code';
 import { CODE_TYPES } from '../constants/constants';
-import { CodeType } from '../util/CodeType.enum';
 import { createCode } from '../util/createCode';
 import { popRandom } from '../util/popRandom';
+import { SearchOptions } from './SearchOptions';
 
-export class DepthSearchOptions {
-  iterationsCount: number;
-  codeSize: number;
-  codeType: CodeType;
-}
-export const DepthSearch = (options: DepthSearchOptions): Code => {
+export const DepthSearch = (options: SearchOptions): Code => {
   let max = createCode(options.codeType, { codeSize: options.codeSize });
   max.generate();
   let close = max.getClose(CODE_TYPES[options.codeType]);

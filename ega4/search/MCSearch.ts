@@ -1,13 +1,8 @@
 import Code from '../codes/Code';
-import { CodeType } from '../util/CodeType.enum';
 import { createCode } from '../util/createCode';
+import { SearchOptions } from './SearchOptions';
 
-export class MCSearchOptions {
-  iterationsCount: number;
-  codeSize: number;
-  codeType: CodeType;
-}
-export const MCSearch = (options: MCSearchOptions): Code => {
+export const MCSearch = (options: SearchOptions): Code => {
   let max = createCode(options.codeType, {
     codeSize: options.codeSize,
     initialValue: 0,

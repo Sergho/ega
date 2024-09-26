@@ -1,15 +1,10 @@
 import Code from '../codes/Code';
 import { CODE_TYPES } from '../constants/constants';
-import { CodeType } from '../util/CodeType.enum';
 import { createCode } from '../util/createCode';
 import { maxLocal } from '../util/maxLocal';
+import { SearchOptions } from './SearchOptions';
 
-export class WidthSearchOptions {
-  iterationsCount: number;
-  codeSize: number;
-  codeType: CodeType;
-}
-export const WidthSearch = (options: WidthSearchOptions): Code => {
+export const WidthSearch = (options: SearchOptions): Code => {
   let max = createCode(options.codeType, { codeSize: options.codeSize });
   max.generate();
   let close = max.getClose(CODE_TYPES[options.codeType]);
