@@ -1,0 +1,51 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Custom TSC ega1",
+      "type": "shell",
+      "command": "tsc -p ./ega1",
+      "args": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Custom TSC ega2",
+      "type": "shell",
+      "command": "tsc -p ./ega2",
+      "args": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Custom TSC ega3",
+      "type": "shell",
+      "command": "tsc -p ./ega3",
+      "args": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Custom TSC ega4",
+      "type": "shell",
+      "command": "tsc -p ./ega4",
+      "args": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

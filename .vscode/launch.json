@@ -1,0 +1,44 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch ega1",
+      "program": "${workspaceFolder}/ega1/dist/index.js",
+      "preLaunchTask": "Custom TSC ega1",
+      "outFiles": ["${workspaceFolder}/ega1/dist/**/*.js"],
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch ega2",
+      "program": "${workspaceFolder}/ega2/dist/index.js",
+      "preLaunchTask": "Custom TSC ega2",
+      "outFiles": ["${workspaceFolder}/ega2/dist/**/*.js"],
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch ega3",
+      "program": "${workspaceFolder}/ega3/dist/index.js",
+      "preLaunchTask": "Custom TSC ega3",
+      "outFiles": ["${workspaceFolder}/ega3/dist/**/*.js"],
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch ega4",
+      "program": "${workspaceFolder}/ega4/dist/index.js",
+      "preLaunchTask": "Custom TSC ega4",
+      "outFiles": ["${workspaceFolder}/ega4/dist/**/*.js"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
