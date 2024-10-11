@@ -4,8 +4,8 @@ import SinLnCode from '../codes/SinLnCode';
 import SquareCode from '../codes/SquareCode';
 import { CodeType } from '../util/CodeType.enum';
 
-export const L = 15;
-export const N = 32;
+export const L = 7;
+export const N = 5;
 export const M = 5;
 export const RANDOM_MIN = 1;
 export const RANDOM_MAX = 100;
