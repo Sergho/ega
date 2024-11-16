@@ -1,6 +1,9 @@
 import Code from './codes/Code';
 import { N } from './constants/constants';
 import SquareCode from './codes/SquareCode';
+import { printLandscape } from './util/printLandscape';
+
+printLandscape({ limit: 32 });
 
 let max = new Code();
 for (let i = 0; i < N; i++) {

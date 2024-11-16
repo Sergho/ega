@@ -1,11 +1,14 @@
 import NaturalCode from './codes/NaturalCode';
 import { N } from './constants/constants';
 import { popRandom } from './util/popRandom';
+import { printLandscape } from './util/printLandscape';
+
+printLandscape({ limit: 32 });
 
 let max = new NaturalCode();
 max.generate();
 let close: NaturalCode[] = max.getClose(NaturalCode);
-console.log(`Init: ${max.getPreview()}`)
+console.log(`Init: ${max.getPreview()}`);
 console.log(`Close(${close.length}):`);
 for (const closeItem of close) {
   console.log(closeItem.getPreview());

@@ -1,6 +1,5 @@
 import { L } from '../constants/constants';
 import { randomInt } from '../util/randomInt';
-import NaturalCode from './NaturalCode';
 
 class Code {
   public code: number;

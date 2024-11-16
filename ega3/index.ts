@@ -1,7 +1,9 @@
 import NaturalCode from './codes/NaturalCode';
 import { N } from './constants/constants';
 import { maxLocal } from './util/maxLocal';
-import { popRandom } from './util/popRandom';
+import { printLandscape } from './util/printLandscape';
+
+printLandscape({ limit: 32 });
 
 let max = new NaturalCode();
 max.generate();
@@ -20,7 +22,7 @@ for (let i = 0; i < N; i++) {
     max = local;
     close = max.getClose(NaturalCode);
     maxChanged = true;
-  }
+  } else break;
 
   console.log(
     `#${i}\tCurrent: ${local.getPreview()},\tMax: ${max.getPreview()}\t${

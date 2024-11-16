@@ -22,7 +22,7 @@ export const WidthSearch = (options: SearchOptions): Code => {
       max = local;
       close = max.getClose(CODE_TYPES[options.codeType]);
       maxChanged = true;
-    }
+    } else break;
 
     console.log(
       `#${i}\tCurrent: ${local.getPreview()},\tMax: ${max.getPreview()}\t${
