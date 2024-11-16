@@ -39,6 +39,15 @@
       "preLaunchTask": "Custom TSC ega4",
       "outFiles": ["${workspaceFolder}/ega4/dist/**/*.js"],
       "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch ega5",
+      "program": "${workspaceFolder}/ega5/dist/index.js",
+      "preLaunchTask": "Custom TSC ega5",
+      "outFiles": ["${workspaceFolder}/ega5/dist/**/*.js"],
+      "console": "integratedTerminal"
     }
   ]
 }

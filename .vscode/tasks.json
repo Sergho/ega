@@ -46,6 +46,17 @@
         "reveal": "silent"
       },
       "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Custom TSC ega5",
+      "type": "shell",
+      "command": "tsc -p ./ega5",
+      "args": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": "$msCompile"
     }
   ]
 }
