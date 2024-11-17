@@ -2,13 +2,13 @@ import { VECTOR_ERRORS } from '../constants/exceptions';
 import { IVector } from './vector.interface';
 
 export class Vector<T> implements IVector<T>, Iterable<T> {
-  private _size: number;
-  private _data: T[];
+  protected _size: number;
+  protected _data: T[];
   public get size(): number {
     return this._size;
   }
   public constructor(data?: T[]) {
-    if (data === null) {
+    if (!data) {
       this._data = [null];
       this._size = 1;
     } else {

@@ -1,19 +1,20 @@
-import { MATRIX_ERRORS } from '../constants/exceptions';
+import { MATRIX_ERRORS, VECTOR_ERRORS } from '../constants/exceptions';
 import { IMatrix } from './matrix.interface';
 import { Vector } from '../vectors/vector';
+import { IVector } from '../vectors/vector.interface';
 
-export class Matrix<T> implements IMatrix<T>, Iterable<Vector<T>> {
+export class Matrix<T> implements IMatrix<T>, Iterable<IVector<T>> {
   private _rowsCount: number;
   private _colsCount: number;
-  private _data: Vector<T>[];
+  private _data: IVector<T>[];
   public get rowsCount(): number {
     return this._rowsCount;
   }
   public get colsCount(): number {
     return this._colsCount;
   }
-  public constructor(data?: Vector<T>[]) {
-    if (data === null) {
+  public constructor(data?: IVector<T>[]) {
+    if (!data) {
       this._data = [new Vector<T>()];
       this._rowsCount = 1;
       this._colsCount = 1;
@@ -22,7 +23,7 @@ export class Matrix<T> implements IMatrix<T>, Iterable<Vector<T>> {
       this._data = data;
     }
   }
-  public [Symbol.iterator](): Iterator<Vector<T>> {
+  public [Symbol.iterator](): Iterator<IVector<T>> {
     let counter = 0;
     return {
       next: () => {
@@ -37,7 +38,7 @@ export class Matrix<T> implements IMatrix<T>, Iterable<Vector<T>> {
     if (this._colsCount < 1) throw MATRIX_ERRORS.INCORRECT_SIZE;
     this._colsCount--;
   }
-  public pushCol(col: Vector<T>): void {
+  public pushCol(col: IVector<T>): void {
     if (col.size !== this._rowsCount) throw MATRIX_ERRORS.INCORRECT_SIZE;
 
     for (let i = 0; i < col.size; i++) {
@@ -48,7 +49,7 @@ export class Matrix<T> implements IMatrix<T>, Iterable<Vector<T>> {
     if (this._rowsCount < 1) throw MATRIX_ERRORS.INCORRECT_SIZE;
     this._rowsCount--;
   }
-  public pushRow(row: Vector<T>): void {
+  public pushRow(row: IVector<T>): void {
     if (row.size !== this._colsCount) throw MATRIX_ERRORS.INCORRECT_SIZE;
 
     this._data[this._rowsCount] = row;
@@ -68,9 +69,13 @@ export class Matrix<T> implements IMatrix<T>, Iterable<Vector<T>> {
       throw MATRIX_ERRORS.INCORRECT_INDEX;
     return this._data[rowIndex][colIndex];
   }
-  private checkSize(data: Vector<T>[]): {
-    rowsCount: number;
-    colsCount: number;
+  public getRow(rowIndex: number): IVector<T> {
+    if (rowIndex >= this._rowsCount) throw VECTOR_ERRORS.INCORRECT_INDEX;
+    return this._data[rowIndex];
+  }
+  private checkSize(data: IVector<T>[]): {
+    _rowsCount: number;
+    _colsCount: number;
   } {
     if (data.length === 0) throw MATRIX_ERRORS.INCORRECT_SIZE;
 
@@ -85,8 +90,8 @@ export class Matrix<T> implements IMatrix<T>, Iterable<Vector<T>> {
       if (colsCount !== column.size) throw MATRIX_ERRORS.INCORRECT_SIZE;
     }
     return {
-      rowsCount: data.length,
-      colsCount,
+      _rowsCount: data.length,
+      _colsCount: colsCount,
     };
   }
 }
