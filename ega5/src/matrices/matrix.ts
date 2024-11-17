@@ -34,6 +34,7 @@ export class Matrix<T> implements IMatrix<T>, Iterable<Vector<T>> {
     };
   }
   public popCol(): void {
+    if (this._colsCount < 1) throw MATRIX_ERRORS.INCORRECT_SIZE;
     this._colsCount--;
   }
   public pushCol(col: Vector<T>): void {
@@ -44,6 +45,7 @@ export class Matrix<T> implements IMatrix<T>, Iterable<Vector<T>> {
     }
   }
   public popRow(): void {
+    if (this._rowsCount < 1) throw MATRIX_ERRORS.INCORRECT_SIZE;
     this._rowsCount--;
   }
   public pushRow(row: Vector<T>): void {

@@ -40,6 +40,7 @@ export class Vector<T> implements IVector<T>, Iterable<T> {
     this._size++;
   }
   public pop(): void {
+    if (this._size < 1) throw VECTOR_ERRORS.INCORRECT_SIZE;
     this._size--;
   }
   private checkSize(data: T[]): number {
