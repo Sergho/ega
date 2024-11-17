@@ -1,6 +1,6 @@
 import { D, F, T, X } from './src/constants/constants';
-import { Estimator } from './src/estimators/estimator';
-import { EstimatorOptions } from './src/estimators/estimator.interface';
+import { Estimator } from './src/estimator/estimator';
+import { EstimatorOptions } from './src/estimator/estimator.interface';
 
 const options: EstimatorOptions = {
   startTimes: X,

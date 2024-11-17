@@ -12,8 +12,8 @@ export class Vector<T> implements IVector<T>, Iterable<T> {
       this._data = [null];
       this._size = 1;
     } else {
-      this._size = this.checkSize(data);
       this._data = data;
+      this._size = this.checkSize();
     }
   }
   public [Symbol.iterator](): Iterator<T> {
@@ -43,8 +43,8 @@ export class Vector<T> implements IVector<T>, Iterable<T> {
     if (this._size < 1) throw VECTOR_ERRORS.INCORRECT_SIZE;
     this._size--;
   }
-  private checkSize(data: T[]): number {
-    if (data.length === 0) throw VECTOR_ERRORS.INCORRECT_SIZE;
-    return data.length;
+  private checkSize(): number {
+    if (this._data.length === 0) throw VECTOR_ERRORS.INCORRECT_SIZE;
+    return this._data.length;
   }
 }
