@@ -4,4 +4,5 @@ export interface IVector<T> {
   push(value: T): void;
   set(index: number, value: T): void;
   get(index: number): T;
+  clear(size: number);
 }

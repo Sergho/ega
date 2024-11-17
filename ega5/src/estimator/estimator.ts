@@ -11,11 +11,11 @@ export class Estimator implements IEstimator {
 
     let fine = 0;
     for (let i = 0; i < startTimes.rowsCount; i++) {
-      let vector = new NumberVector();
-      Object.assign(vector, startTimes.getRow(i));
-      vector.add(executionTimes.getRow(i));
+      let endTime = new NumberVector();
+      Object.assign(endTime, startTimes.getRow(i));
+      endTime.add(executionTimes.getRow(i));
 
-      const max = vector.max();
+      const max = endTime.max();
 
       fine += fines.get(i) * Math.max(0, max - deadlines.get(i));
     }

@@ -10,5 +10,8 @@ export const PERMUTATION_ERRORS = {
   INCORRECT_STRUCTURE: new Error('Incorrect permutation structure'),
 };
 export const ESTIMATOR_ERROR = {
-  INCORRECT_SIZES: new Error('Incorrect estimated inputs sizes'),
+  INCORRECT_SIZES: new Error('Incorrect estimator inputs sizes'),
+};
+export const SIMULATION_ERROR = {
+  INCORRECT_SIZES: new Error('Incorrect simulation inputs sizes'),
 };

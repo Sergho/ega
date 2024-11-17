@@ -16,6 +16,12 @@ export class Vector<T> implements IVector<T>, Iterable<T> {
       this._size = this.checkSize();
     }
   }
+  clear(size: number) {
+    this._size = size;
+    for (let i = 0; i < size; i++) {
+      this._data[i] = null;
+    }
+  }
   public [Symbol.iterator](): Iterator<T> {
     let counter = 0;
     return {

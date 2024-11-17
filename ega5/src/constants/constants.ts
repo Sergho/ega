@@ -1,4 +1,5 @@
 import { NumberMatrix } from '../matrices/number-matrix';
+import { NumberPermutation } from '../permutations/number-permutation';
 import { NumberVector } from '../vectors/number-vector';
 
 // TODO Get these constants from user
@@ -28,3 +29,4 @@ export const T = new NumberMatrix([
   new NumberVector([2, 3, 7, 6, 8]),
   new NumberVector([4, 8, 1, 4, 9]),
 ]);
+export const Q = new NumberPermutation([2, 4, 3, 5, 6, 7, 1, 9, 8]);

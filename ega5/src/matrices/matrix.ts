@@ -2,11 +2,12 @@ import { MATRIX_ERRORS, VECTOR_ERRORS } from '../constants/exceptions';
 import { IMatrix } from './matrix.interface';
 import { Vector } from '../vectors/vector';
 import { IVector } from '../vectors/vector.interface';
+import { NumberVector } from '../vectors/number-vector';
 
 export class Matrix<T> implements IMatrix<T>, Iterable<IVector<T>> {
-  private _rowsCount: number;
-  private _colsCount: number;
-  private _data: IVector<T>[];
+  protected _rowsCount: number;
+  protected _colsCount: number;
+  protected _data: IVector<T>[];
   public get rowsCount(): number {
     return this._rowsCount;
   }
@@ -21,6 +22,14 @@ export class Matrix<T> implements IMatrix<T>, Iterable<IVector<T>> {
     } else {
       Object.assign(this, this.checkSize(data));
       this._data = data;
+    }
+  }
+  clear(rowsCount: number, colsCount: number) {
+    this._rowsCount = rowsCount;
+    this._colsCount = colsCount;
+    for (let i = 0; i < rowsCount; i++) {
+      this._data[i] = new Vector<T>();
+      this._data[i].clear(colsCount);
     }
   }
   public [Symbol.iterator](): Iterator<IVector<T>> {
@@ -60,14 +69,14 @@ export class Matrix<T> implements IMatrix<T>, Iterable<IVector<T>> {
       throw MATRIX_ERRORS.INCORRECT_INDEX;
     if (colIndex >= this._colsCount || colIndex < 0)
       throw MATRIX_ERRORS.INCORRECT_INDEX;
-    this._data[rowIndex][colIndex] = value;
+    this._data[rowIndex].set(colIndex, value);
   }
   public get(rowIndex: number, colIndex: number): T {
     if (rowIndex >= this._rowsCount || rowIndex < 0)
       throw MATRIX_ERRORS.INCORRECT_INDEX;
     if (colIndex >= this._colsCount || colIndex < 0)
       throw MATRIX_ERRORS.INCORRECT_INDEX;
-    return this._data[rowIndex][colIndex];
+    return this._data[rowIndex].get(colIndex);
   }
   public getRow(rowIndex: number): IVector<T> {
     if (rowIndex >= this._rowsCount) throw VECTOR_ERRORS.INCORRECT_INDEX;
