@@ -2,6 +2,8 @@ import { NumberMatrix } from '../matrices/number-matrix';
 import { NumberPermutation } from '../permutations/number-permutation';
 import { NumberVector } from '../vectors/number-vector';
 
+export const START_POPULATION_SIZE = 14;
+
 // TODO Get these constants from user
 export const N = 15;
 export const M = 5;
