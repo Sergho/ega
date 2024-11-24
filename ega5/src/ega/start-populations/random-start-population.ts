@@ -1,3 +1,4 @@
+import { ESTIMATOR, SIMULATION } from '../../constants/constants';
 import { InputDto } from '../../data-sources/dto/input.dto';
 import { Estimator } from '../../estimator/estimator';
 import { NumberPermutation } from '../../permutations/number-permutation';
@@ -14,8 +15,8 @@ export class RandomStartPopulation implements IStartPopulation {
       permutation.fillRandom(inputs.deadlines.size);
 
       const individual = new Individual(permutation, {
-        simulation: new Simulation(),
-        estimator: new Estimator(),
+        simulation: SIMULATION,
+        estimator: ESTIMATOR,
         inputs,
       });
       population.push(individual);

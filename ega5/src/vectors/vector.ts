@@ -16,7 +16,7 @@ export class Vector<T> implements IVector<T>, Iterable<T> {
       this._size = this.checkSize();
     }
   }
-  clear(size: number) {
+  public clear(size: number) {
     this._size = size;
     for (let i = 0; i < size; i++) {
       this._data[i] = null;
@@ -48,6 +48,9 @@ export class Vector<T> implements IVector<T>, Iterable<T> {
   public pop(): void {
     if (this._size < 1) throw VECTOR_ERRORS.INCORRECT_SIZE;
     this._size--;
+  }
+  public print() {
+    console.log(this._data.toString());
   }
   private checkSize(): number {
     if (this._data.length === 0) throw VECTOR_ERRORS.INCORRECT_SIZE;

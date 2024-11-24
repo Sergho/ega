@@ -1,7 +1,5 @@
 import { InputDto } from '../data-sources/dto/input.dto';
-import { Estimator } from '../estimator/estimator';
-import { NumberPermutation } from '../permutations/number-permutation';
-import { Simulation } from '../simulation/simulation';
+import { ICrossover } from './crossovers/crossover.interface';
 import { IEGA } from './ega.interface';
 import { Individual } from './individual/individual';
 import { PairDto } from './individual/pair.dto';
@@ -11,6 +9,7 @@ import { IStartPopulation } from './start-populations/start-population.interface
 export class EGAStrategies {
   startPopulation: IStartPopulation;
   selector: ISelector;
+  crossover: ICrossover;
 }
 export class EGA implements IEGA {
   private _population: Individual[];
@@ -28,5 +27,8 @@ export class EGA implements IEGA {
   }
   public selectParents(): PairDto[] {
     return this._strategies.selector.select(this._population);
+  }
+  public crossover(pairs: PairDto[]): Individual[] {
+    return this._strategies.crossover.cross(pairs, this._inputs);
   }
 }

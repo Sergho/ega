@@ -21,7 +21,7 @@ export class Individual implements IIndividual {
     this._estimator = options.estimator;
     this._inputs = options.inputs;
   }
-  fitness(): number {
+  public fitness(): number {
     const startTimes = this._simulation.simulate({
       queue: this.code,
       executionTimes: this._inputs.executionTimes,

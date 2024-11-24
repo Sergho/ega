@@ -5,4 +5,5 @@ export interface IVector<T> {
   set(index: number, value: T): void;
   get(index: number): T;
   clear(size: number);
+  print(): void;
 }

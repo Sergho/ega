@@ -15,3 +15,6 @@ export const ESTIMATOR_ERROR = {
 export const SIMULATION_ERROR = {
   INCORRECT_SIZES: new Error('Incorrect simulation inputs sizes'),
 };
+export const CROSSOVER_ERROR = {
+  INCORRECT_PARENT_SIZES: new Error('Incorrect crossover parent sizes'),
+};
