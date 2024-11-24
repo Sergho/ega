@@ -1,8 +1,15 @@
+import { EGAStrategies } from '../ega/ega';
+import { RandomSelector } from '../ega/selectors/random-selector';
+import { RandomStartPopulation } from '../ega/start-populations/random-start-population';
 import { NumberMatrix } from '../matrices/number-matrix';
 import { NumberPermutation } from '../permutations/number-permutation';
 import { NumberVector } from '../vectors/number-vector';
 
 export const START_POPULATION_SIZE = 14;
+export const EGA_STRATEGIES: EGAStrategies = {
+  startPopulation: new RandomStartPopulation(),
+  selector: new RandomSelector(),
+};
 
 // TODO Get these constants from user
 export const D = new NumberVector([19, 22, 25, 29, 34, 37, 40, 41, 45]);
