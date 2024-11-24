@@ -1,25 +1,18 @@
-import { D, F, Q, T, X } from './src/constants/constants';
+import { D, F, Q, T } from './src/constants/constants';
+import { InputDto } from './src/data-sources/dto/input.dto';
+import { Individual } from './src/ega/individual/individual';
 import { Estimator } from './src/estimator/estimator';
-import { EstimatorOptions } from './src/estimator/estimator.interface';
 import { Simulation } from './src/simulation/simulation';
-import { Vector } from './src/vectors/vector';
 
-const simulation = new Simulation();
-const simulationResult = simulation.simulate({ queue: Q, executionTimes: T });
-for (const row of simulationResult) {
-  for (const value of row as Vector<number>) {
-    process.stdout.write(value + ', ');
-  }
-  process.stdout.write('\n');
-}
-
-const options: EstimatorOptions = {
-  startTimes: simulationResult,
+const inputs: InputDto = {
   executionTimes: T,
   fines: F,
   deadlines: D,
 };
-
-const estimator = new Estimator();
-const result = estimator.estimate(options);
-console.log(result);
+const code = Q;
+const individual = new Individual(code, {
+  simulation: new Simulation(),
+  estimator: new Estimator(),
+  inputs,
+});
+console.log(individual.code, individual.fitness());

@@ -47,7 +47,6 @@ export class Simulation implements ISimulation {
     return max + executionTimes.get(maxIndex, machineIndex);
   }
   private checkSizes(options: SimulatorOptions): void {
-    // TODO Create special size vectors. Not check that here
     const { queue, executionTimes } = options;
 
     if (queue.size !== executionTimes.rowsCount)

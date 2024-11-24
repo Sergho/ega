@@ -1,8 +1,7 @@
 import { NumberMatrix } from '../matrices/number-matrix';
 import { NumberVector } from '../vectors/number-vector';
 
-// TODO Change types to interfaces
-export class EstimatorOptions {
+export interface EstimatorOptions {
   startTimes: NumberMatrix;
   executionTimes: NumberMatrix;
   fines: NumberVector;

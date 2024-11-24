@@ -23,7 +23,6 @@ export class Estimator implements IEstimator {
     return fine;
   }
   private checkSizes(options: EstimatorOptions): void {
-    // TODO Create special size vectors. Not check that here
     const { startTimes, executionTimes, fines, deadlines } = options;
 
     if (startTimes.rowsCount !== executionTimes.rowsCount)
