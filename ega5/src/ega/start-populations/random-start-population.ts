@@ -7,10 +7,13 @@ import { Individual } from '../individual/individual';
 import { IStartPopulation } from './start-population.interface';
 
 export class RandomStartPopulation implements IStartPopulation {
-  public constructor() {}
-  public create(size: number, inputs: InputDto): Individual[] {
+  private _size: number;
+  public constructor(size: number) {
+    this._size = size;
+  }
+  public create(inputs: InputDto): Individual[] {
     const population: Individual[] = [];
-    for (let i = 0; i < size; i++) {
+    for (let i = 0; i < this._size; i++) {
       const permutation = new NumberPermutation();
       permutation.fillRandom(inputs.deadlines.size);
 

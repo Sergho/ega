@@ -29,4 +29,8 @@ export class Individual implements IIndividual {
 
     return this._estimator.estimate({ startTimes, ...this._inputs });
   }
+  public print(): void {
+    this.code.print();
+    console.log(this.fitness());
+  }
 }

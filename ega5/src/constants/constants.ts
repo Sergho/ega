@@ -1,22 +1,22 @@
 import { OXCrossover } from '../ega/crossovers/ox-crossover';
 import { EGAStrategies } from '../ega/ega';
 import { GeneticMutation } from '../ega/mutations/genetic-mutation';
+import { TournamentSelection } from '../ega/selections/tournament-selection';
 import { RandomSelector } from '../ega/selectors/random-selector';
 import { RandomStartPopulation } from '../ega/start-populations/random-start-population';
 import { Estimator } from '../estimator/estimator';
 import { NumberMatrix } from '../matrices/number-matrix';
-import { NumberPermutation } from '../permutations/number-permutation';
 import { Simulation } from '../simulation/simulation';
 import { NumberVector } from '../vectors/number-vector';
 
 export const SIMULATION = new Simulation();
 export const ESTIMATOR = new Estimator();
-export const START_POPULATION_SIZE = 14;
 export const EGA_STRATEGIES: EGAStrategies = {
-  startPopulation: new RandomStartPopulation(),
+  startPopulation: new RandomStartPopulation(14),
   selector: new RandomSelector(),
   crossover: new OXCrossover(),
   mutation: new GeneticMutation(),
+  selection: new TournamentSelection(5, 14),
 };
 
 // TODO Get these constants from user
