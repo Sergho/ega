@@ -3,6 +3,7 @@ import { ICrossover } from './crossovers/crossover.interface';
 import { IEGA } from './ega.interface';
 import { Individual } from './individual/individual';
 import { PairDto } from './individual/pair.dto';
+import { IMutation } from './mutations/mutation.interface';
 import { ISelector } from './selectors/selector.interface';
 import { IStartPopulation } from './start-populations/start-population.interface';
 
@@ -10,6 +11,7 @@ export class EGAStrategies {
   startPopulation: IStartPopulation;
   selector: ISelector;
   crossover: ICrossover;
+  mutation: IMutation;
 }
 export class EGA implements IEGA {
   private _population: Individual[];
@@ -30,5 +32,8 @@ export class EGA implements IEGA {
   }
   public crossover(pairs: PairDto[]): Individual[] {
     return this._strategies.crossover.cross(pairs, this._inputs);
+  }
+  public mutation(children: Individual[]): Individual[] {
+    return this._strategies.mutation.mutate(children, this._inputs);
   }
 }

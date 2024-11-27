@@ -23,13 +23,12 @@ const ega = new EGA(inputs, EGA_STRATEGIES);
 ega.createPopulation(START_POPULATION_SIZE);
 const parents = ega.selectParents();
 const children = ega.crossover(parents);
-console.log('parents');
-for (const pair of parents) {
-  pair.first.code.print();
-  pair.second.code.print();
-  console.log('');
-}
 console.log('children');
 for (const child of children) {
+  child.code.print();
+}
+const mutated = ega.mutation(children);
+console.log('mutated');
+for (const child of mutated) {
   child.code.print();
 }

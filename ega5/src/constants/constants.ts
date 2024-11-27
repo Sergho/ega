@@ -1,5 +1,6 @@
 import { OXCrossover } from '../ega/crossovers/ox-crossover';
 import { EGAStrategies } from '../ega/ega';
+import { GeneticMutation } from '../ega/mutations/genetic-mutation';
 import { RandomSelector } from '../ega/selectors/random-selector';
 import { RandomStartPopulation } from '../ega/start-populations/random-start-population';
 import { Estimator } from '../estimator/estimator';
@@ -15,6 +16,7 @@ export const EGA_STRATEGIES: EGAStrategies = {
   startPopulation: new RandomStartPopulation(),
   selector: new RandomSelector(),
   crossover: new OXCrossover(),
+  mutation: new GeneticMutation(),
 };
 
 // TODO Get these constants from user
