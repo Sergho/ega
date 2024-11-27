@@ -1,4 +1,10 @@
-import { D, EGA_STRATEGIES, F, T } from './src/constants/constants';
+import {
+  D,
+  EGA_STRATEGIES,
+  F,
+  GENERATIONS_COUNT,
+  T,
+} from './src/constants/constants';
 import { InputDto } from './src/data-sources/dto/input.dto';
 import { EGA } from './src/ega/ega';
 
@@ -9,16 +15,9 @@ const inputs: InputDto = {
 };
 
 const ega = new EGA(inputs, EGA_STRATEGIES);
-ega.createPopulation();
-const parents = ega.selectParents();
-const children = ega.crossover(parents);
-const mutated = ega.mutation(children);
-console.log('Start population');
-for (const individual of ega._population) {
-  console.log(individual.fitness());
-}
-ega.selection(mutated);
-console.log('New population');
-for (const individual of ega._population) {
-  console.log(individual.fitness());
+let iteration = 0;
+while (iteration < GENERATIONS_COUNT) {
+  const data = ega.iteration();
+  iteration = data.index;
+  console.log(`Population: #${data.index}, Min: ${data.min}, Avg: ${data.avg}`);
 }

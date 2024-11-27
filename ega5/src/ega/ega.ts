@@ -1,6 +1,6 @@
 import { InputDto } from '../data-sources/dto/input.dto';
 import { ICrossover } from './crossovers/crossover.interface';
-import { IEGA } from './ega.interface';
+import { IEGA, PopulationInfo } from './ega.interface';
 import { Individual } from './individual/individual';
 import { PairDto } from './individual/pair.dto';
 import { IMutation } from './mutations/mutation.interface';
@@ -17,11 +17,32 @@ export class EGAStrategies {
 }
 export class EGA implements IEGA {
   public _population: Individual[];
+  private _populationIndex: number;
   private _inputs: InputDto;
   private _strategies: EGAStrategies;
   public constructor(inputs: InputDto, strategies: EGAStrategies) {
     this._inputs = inputs;
     this._strategies = strategies;
+  }
+  public iteration(): PopulationInfo {
+    if (!this._population || this._population.length === 0) {
+      this.createPopulation();
+      this._populationIndex = 1;
+      return this.populationInfo();
+    }
+    const parents: PairDto[] = this.selectParents();
+    const children: Individual[] = this.crossover(parents);
+    const mutated: Individual[] = this.mutation(children);
+    this.selection(mutated);
+    this._populationIndex++;
+    return this.populationInfo();
+  }
+  private populationInfo(): PopulationInfo {
+    return {
+      index: this._populationIndex,
+      avg: this._population.map((i) => i.fitness()).reduce((a, b) => a + b, 0),
+      min: Math.min(...this._population.map((i) => i.fitness())),
+    };
   }
   public createPopulation() {
     this._population = this._strategies.startPopulation.create(this._inputs);
