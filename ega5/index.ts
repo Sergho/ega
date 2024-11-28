@@ -1,14 +1,4 @@
-import { EGA_STRATEGIES, GENERATIONS_COUNT } from './src/constants/constants';
-import { FileDataSource } from './src/data-sources/file-data-source';
-import { EGA } from './src/ega/ega';
+import { App } from './src/app';
 
-const dataSource = new FileDataSource('ega5/input.txt');
-const ega = new EGA(dataSource.launch(), EGA_STRATEGIES);
-let iteration = 0;
-while (iteration < GENERATIONS_COUNT) {
-  const data = ega.iteration();
-  iteration = data.index;
-  console.log(`Population: #${data.index}, Min: ${data.min}, Avg: ${data.avg}`);
-}
-console.log('Best result:');
-ega.best().print();
+const app = new App();
+app.run();
