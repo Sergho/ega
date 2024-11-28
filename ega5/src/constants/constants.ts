@@ -9,9 +9,11 @@ import { Simulation } from '../task/simulation/simulation';
 
 export const HOST = 'http://localhost:3000';
 export const PORT = 3000;
+export const PUBLIC_DIRECTORY = 'ega5/src/public';
+export const VIEW_FILE = 'ega5/src/public/index.html';
 export const INPUT_FILENAME = 'ega5/input.txt';
 export const OUTPUT_FILENAME = 'ega5/output.txt';
-export const GENERATIONS_COUNT = 40;
+export const GENERATIONS_COUNT = 4;
 export const SIMULATION = new Simulation();
 export const ESTIMATOR = new Estimator();
 export const EGA_STRATEGIES: EGAStrategies = {

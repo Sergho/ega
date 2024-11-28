@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      outline: none;
+    }
+    body {
+      overflow: hidden;
+    }
+    header {
+      box-sizing: border-box;
+      margin-top: 10px;
+      height: 70px;
+    }
+    header h1 {
+      font-size: 36px;
+      font-family: Hack;
+      color: #555;
+      text-align: center;
+      line-height: 50px;
+    }
+    header p {
+      font-family: Hack;
+      font-size: 20px;
+      text-align: center;
+      color: #777;
+    }
+    canvas {
+      margin-top: 20px;
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 100px);
+      background-color: blue;
+    }
+  </style>
+  <body>
+    <header>
+      <h1>График Ганта</h1>
+      <p>Перестановка:</p>
+    </header>
+    <canvas></canvas>
+  </body>
+  <script src="jquery.js"></script>
+  <script>
+    function updateSpan(data) {
+      const span = document.querySelector('p');
+      span.innerHTML += ' ' + Array.from(data).join(',');
+    }
+    function buildGant(data) {}
+    function updateCanvas(gant) {}
+    $.ajax({
+      url: '/report',
+      method: 'get',
+      dataType: 'json',
+      success: (data) => {
+        updateSpan(data);
+      },
+    });
+  </script>
+</html>
