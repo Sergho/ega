@@ -1,8 +1,7 @@
 import { InputDto } from '../../data-sources/dto/input.dto';
-import { Estimator } from '../../estimator/estimator';
-import { NumberMatrix } from '../../matrices/number-matrix';
-import { NumberPermutation } from '../../permutations/number-permutation';
-import { Simulation } from '../../simulation/simulation';
+import { NumberPermutation } from '../../math/permutations/number-permutation';
+import { Estimator } from '../../task/estimator/estimator';
+import { Simulation } from '../../task/simulation/simulation';
 import { IIndividual } from './individual.interface';
 
 export interface IndividualOptions {

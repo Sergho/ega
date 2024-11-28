@@ -1,4 +1,4 @@
-import { NumberPermutation } from '../../permutations/number-permutation';
+import { NumberPermutation } from '../../math/permutations/number-permutation';
 
 export interface IIndividual {
   code: NumberPermutation;

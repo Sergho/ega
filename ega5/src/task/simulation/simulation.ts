@@ -1,5 +1,5 @@
-import { SIMULATION_ERROR } from '../constants/exceptions';
-import { NumberMatrix } from '../matrices/number-matrix';
+import { SIMULATION_ERROR } from '../../constants/exceptions';
+import { NumberMatrix } from '../../math/matrices/number-matrix';
 import { ISimulation, SimulatorOptions } from './simulation.interface';
 
 export class Simulation implements ISimulation {

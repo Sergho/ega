@@ -1,4 +1,4 @@
-import { VECTOR_ERRORS } from '../constants/exceptions';
+import { VECTOR_ERRORS } from '../../constants/exceptions';
 import { IVector } from './vector.interface';
 
 export class Vector<T> implements IVector<T>, Iterable<T> {

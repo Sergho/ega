@@ -5,9 +5,9 @@ import {
   OUTPUT_FILENAME,
 } from './constants/constants';
 import { FileDataSource } from './data-sources/file-data-source';
+import { FileReader } from './data-sources/readers/file-reader';
+import { FileSaver } from './data-sources/savers/file-saver';
 import { EGA } from './ega/ega';
-import { FileReader } from './readers/file-reader';
-import { FileSaver } from './savers/file-saver';
 
 export class App {
   public constructor() {}

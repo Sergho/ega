@@ -1,6 +1,6 @@
-import { ESTIMATOR_ERROR } from '../constants/exceptions';
+import { ESTIMATOR_ERROR } from '../../constants/exceptions';
+import { NumberVector } from '../../math/vectors/number-vector';
 import { EstimatorOptions, IEstimator } from './estimator.interface';
-import { NumberVector } from '../vectors/number-vector';
 
 export class Estimator implements IEstimator {
   public constructor() {}

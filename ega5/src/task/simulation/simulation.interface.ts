@@ -1,5 +1,5 @@
-import { NumberMatrix } from '../matrices/number-matrix';
-import { NumberPermutation } from '../permutations/number-permutation';
+import { NumberMatrix } from '../../math/matrices/number-matrix';
+import { NumberPermutation } from '../../math/permutations/number-permutation';
 
 export interface SimulatorOptions {
   queue: NumberPermutation;

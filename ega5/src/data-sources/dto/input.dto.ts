@@ -1,5 +1,5 @@
-import { NumberMatrix } from '../../matrices/number-matrix';
-import { NumberVector } from '../../vectors/number-vector';
+import { NumberMatrix } from '../../math/matrices/number-matrix';
+import { NumberVector } from '../../math/vectors/number-vector';
 
 export interface InputDto {
   executionTimes: NumberMatrix;

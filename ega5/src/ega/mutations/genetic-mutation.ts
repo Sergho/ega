@@ -1,6 +1,6 @@
 import { SIMULATION, ESTIMATOR } from '../../constants/constants';
 import { InputDto } from '../../data-sources/dto/input.dto';
-import { NumberPermutation } from '../../permutations/number-permutation';
+import { NumberPermutation } from '../../math/permutations/number-permutation';
 import { Individual } from '../individual/individual';
 import { IMutation } from './mutation.interface';
 

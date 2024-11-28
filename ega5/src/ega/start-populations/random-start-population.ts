@@ -1,8 +1,6 @@
-import { ESTIMATOR, SIMULATION } from '../../constants/constants';
+import { SIMULATION, ESTIMATOR } from '../../constants/constants';
 import { InputDto } from '../../data-sources/dto/input.dto';
-import { Estimator } from '../../estimator/estimator';
-import { NumberPermutation } from '../../permutations/number-permutation';
-import { Simulation } from '../../simulation/simulation';
+import { NumberPermutation } from '../../math/permutations/number-permutation';
 import { Individual } from '../individual/individual';
 import { IStartPopulation } from './start-population.interface';
 

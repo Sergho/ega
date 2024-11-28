@@ -1,4 +1,4 @@
-import { NumberPermutation } from '../permutations/number-permutation';
+import { NumberPermutation } from '../../math/permutations/number-permutation';
 import { ISaver } from './saver.interface';
 import * as fs from 'fs';
 

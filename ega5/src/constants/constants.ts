@@ -4,8 +4,8 @@ import { GeneticMutation } from '../ega/mutations/genetic-mutation';
 import { TournamentSelection } from '../ega/selections/tournament-selection';
 import { RandomSelector } from '../ega/selectors/random-selector';
 import { RandomStartPopulation } from '../ega/start-populations/random-start-population';
-import { Estimator } from '../estimator/estimator';
-import { Simulation } from '../simulation/simulation';
+import { Estimator } from '../task/estimator/estimator';
+import { Simulation } from '../task/simulation/simulation';
 
 export const HOST = 'http://localhost:3000';
 export const PORT = 3000;

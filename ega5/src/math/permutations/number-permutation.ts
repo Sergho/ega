@@ -1,4 +1,4 @@
-import { PERMUTATION_ERRORS } from '../constants/exceptions';
+import { PERMUTATION_ERRORS } from '../../constants/exceptions';
 import { NumberVector } from '../vectors/number-vector';
 
 export class NumberPermutation extends NumberVector {

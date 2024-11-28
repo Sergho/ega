@@ -1,8 +1,7 @@
-import { MATRIX_ERRORS, VECTOR_ERRORS } from '../constants/exceptions';
-import { IMatrix } from './matrix.interface';
+import { MATRIX_ERRORS, VECTOR_ERRORS } from '../../constants/exceptions';
 import { Vector } from '../vectors/vector';
 import { IVector } from '../vectors/vector.interface';
-import { NumberVector } from '../vectors/number-vector';
+import { IMatrix } from './matrix.interface';
 
 export class Matrix<T> implements IMatrix<T>, Iterable<IVector<T>> {
   protected _rowsCount: number;

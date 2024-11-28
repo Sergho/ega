@@ -1,4 +1,4 @@
-import { VECTOR_ERRORS } from '../constants/exceptions';
+import { VECTOR_ERRORS } from '../../constants/exceptions';
 import { Vector } from './vector';
 import { IVector } from './vector.interface';
 

@@ -1,7 +1,7 @@
 import { ESTIMATOR, SIMULATION } from '../../constants/constants';
 import { CROSSOVER_ERROR } from '../../constants/exceptions';
 import { InputDto } from '../../data-sources/dto/input.dto';
-import { NumberPermutation } from '../../permutations/number-permutation';
+import { NumberPermutation } from '../../math/permutations/number-permutation';
 import { Individual } from '../individual/individual';
 import { PairDto } from '../individual/pair.dto';
 import { ICrossover } from './crossover.interface';
