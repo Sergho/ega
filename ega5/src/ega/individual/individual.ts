@@ -5,7 +5,7 @@ import { NumberPermutation } from '../../permutations/number-permutation';
 import { Simulation } from '../../simulation/simulation';
 import { IIndividual } from './individual.interface';
 
-export class IndividualOptions {
+export interface IndividualOptions {
   simulation: Simulation;
   estimator: Estimator;
   inputs: InputDto;

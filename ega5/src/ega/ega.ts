@@ -8,7 +8,7 @@ import { TournamentSelection } from './selections/tournament-selection';
 import { ISelector } from './selectors/selector.interface';
 import { IStartPopulation } from './start-populations/start-population.interface';
 
-export class EGAStrategies {
+export interface EGAStrategies {
   startPopulation: IStartPopulation;
   selector: ISelector;
   crossover: ICrossover;
