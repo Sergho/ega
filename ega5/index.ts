@@ -10,3 +10,5 @@ while (iteration < GENERATIONS_COUNT) {
   iteration = data.index;
   console.log(`Population: #${data.index}, Min: ${data.min}, Avg: ${data.avg}`);
 }
+console.log('Best result:');
+ega.best().print();

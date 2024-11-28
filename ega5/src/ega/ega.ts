@@ -24,6 +24,12 @@ export class EGA implements IEGA {
     this._inputs = inputs;
     this._strategies = strategies;
   }
+  public best(): Individual {
+    const sorted = this._population.sort((a, b) => {
+      return a.fitness() - b.fitness();
+    });
+    return sorted[0];
+  }
   public iteration(): PopulationInfo {
     if (!this._population || this._population.length === 0) {
       this.createPopulation();

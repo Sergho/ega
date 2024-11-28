@@ -13,4 +13,5 @@ export interface IEGA {
   mutation(children: Individual[]): Individual[];
   selection(reproduction: Individual[]): void;
   iteration(): PopulationInfo;
+  best(): Individual;
 }

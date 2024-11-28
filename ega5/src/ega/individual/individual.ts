@@ -31,6 +31,6 @@ export class Individual implements IIndividual {
   }
   public print(): void {
     this.code.print();
-    console.log(this.fitness());
+    console.log(`Fitness: ${this.fitness()}`);
   }
 }
