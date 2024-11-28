@@ -6,6 +6,7 @@ import {
 } from './constants/constants';
 import { FileDataSource } from './data-sources/file-data-source';
 import { EGA } from './ega/ega';
+import { FileReader } from './readers/file-reader';
 import { FileSaver } from './savers/file-saver';
 
 export class App {
@@ -23,6 +24,10 @@ export class App {
     }
     this.printBest(ega);
     this.saveBest(ega);
+  }
+  public getBest() {
+    const reader = new FileReader(OUTPUT_FILENAME);
+    return reader.read();
   }
   private printBest(ega: EGA) {
     console.log('Best result:');

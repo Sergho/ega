@@ -7,6 +7,8 @@ import { RandomStartPopulation } from '../ega/start-populations/random-start-pop
 import { Estimator } from '../estimator/estimator';
 import { Simulation } from '../simulation/simulation';
 
+export const HOST = 'http://localhost:3000';
+export const PORT = 3000;
 export const INPUT_FILENAME = 'ega5/input.txt';
 export const OUTPUT_FILENAME = 'ega5/output.txt';
 export const GENERATIONS_COUNT = 40;
