@@ -11,4 +11,5 @@ export interface IMatrix<T> {
   get(rowIndex: number, colIndex: number): T;
   getRow(rowIndex: number): IVector<T>;
   clear(rowsCount: number, colsCount: number);
+  toList(): T[][];
 }

@@ -6,4 +6,5 @@ export interface IVector<T> {
   get(index: number): T;
   clear(size: number);
   print(): void;
+  toList(): T[];
 }

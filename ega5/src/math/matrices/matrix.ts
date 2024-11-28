@@ -23,7 +23,14 @@ export class Matrix<T> implements IMatrix<T>, Iterable<IVector<T>> {
       this._data = data;
     }
   }
-  clear(rowsCount: number, colsCount: number) {
+  public toList(): T[][] {
+    const list: T[][] = [];
+    for (let i = 0; i < this._rowsCount; i++) {
+      list[i] = [...this._data[i].toList()];
+    }
+    return list;
+  }
+  public clear(rowsCount: number, colsCount: number) {
     this._rowsCount = rowsCount;
     this._colsCount = colsCount;
     for (let i = 0; i < rowsCount; i++) {

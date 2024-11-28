@@ -16,6 +16,9 @@ export class Vector<T> implements IVector<T>, Iterable<T> {
       this._size = this.checkSize();
     }
   }
+  public toList(): T[] {
+    return [...this._data];
+  }
   public clear(size: number) {
     this._size = size;
     for (let i = 0; i < size; i++) {

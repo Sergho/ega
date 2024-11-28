@@ -4,6 +4,7 @@ import {
   HOST,
   PORT,
   PUBLIC_DIRECTORY,
+  SIMULATION,
   VIEW_FILE,
 } from './src/constants/constants';
 import { readFileSync } from 'fs';

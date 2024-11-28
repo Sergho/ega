@@ -33,11 +33,11 @@
       color: #777;
     }
     canvas {
-      margin-top: 20px;
+      margin-top: 170px;
+      margin-bottom: 150px;
       position: relative;
       width: 100%;
-      height: calc(100vh - 100px);
-      background-color: blue;
+      height: calc(100vh - 400px);
     }
   </style>
   <body>
@@ -49,19 +49,80 @@
   </body>
   <script src="jquery.js"></script>
   <script>
-    function updateSpan(data) {
-      const span = document.querySelector('p');
-      span.innerHTML += ' ' + Array.from(data).join(',');
+    const colors = [
+      'red',
+      'green',
+      'blue',
+      'orange',
+      'magenta',
+      'yellow',
+      'maroon',
+      'cyan',
+      'lime',
+      'grey',
+      'chartreuse',
+      'gold',
+      'lightcoral',
+      'orangered',
+      'teal',
+    ];
+    function updateSpans(code) {
+      const p = document.querySelector('p');
+      for (let i = 0; i < code.length; i++) {
+        const span = document.createElement('span');
+        span.style.color = colors[code[i] - 1];
+        span.innerHTML = ' ' + code[i];
+        p.appendChild(span);
+      }
     }
-    function buildGant(data) {}
-    function updateCanvas(gant) {}
-    $.ajax({
-      url: '/report',
-      method: 'get',
-      dataType: 'json',
-      success: (data) => {
-        updateSpan(data);
-      },
+    function getCellSize(startTimes, executionTimes) {
+      let maxIndex = 0;
+      for (let i = 0; i < startTimes.length; i++) {
+        for (let j = 0; j < startTimes[i].length; j++) {
+          const index = startTimes[i][j] + executionTimes[i][j];
+          if (index > maxIndex) {
+            maxIndex = index;
+          }
+        }
+      }
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      let dpr = window.devicePixelRatio || 1;
+      canvas.width = canvas.offsetWidth * dpr;
+      canvas.height = canvas.offsetHeight * dpr;
+      ctx.scale(dpr, dpr);
+      return [canvas.width / maxIndex, canvas.height / startTimes[0].length];
+    }
+    function updateCanvas(startTimes, executionTimes) {
+      const cellSize = getCellSize(startTimes, executionTimes);
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+
+      ctx.strokeStyle = 'black';
+
+      for (let i = 0; i < startTimes.length; i++) {
+        for (let j = 0; j < startTimes[i].length; j++) {
+          for (let k = 0; k < executionTimes[i][j]; k++) {
+            const x = (k + startTimes[i][j]) * cellSize[0];
+            const y = j * cellSize[1];
+            ctx.fillStyle = colors[i];
+            ctx.fillRect(x, y, cellSize[0], cellSize[1]);
+            ctx.strokeRect(x, y, cellSize[0], cellSize[1]);
+          }
+        }
+      }
+    }
+    addEventListener('DOMContentLoaded', (event) => {
+      $.ajax({
+        url: '/report',
+        method: 'get',
+        dataType: 'json',
+        success: (data) => {
+          console.log(data);
+          updateSpans(data.code);
+          updateCanvas(data.startTimes, data.executionTimes);
+        },
+      });
     });
   </script>
 </html>
