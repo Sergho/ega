@@ -13,6 +13,7 @@
     }
     body {
       overflow: hidden;
+      background-color: #ddd;
     }
     header {
       box-sizing: border-box;
@@ -27,8 +28,9 @@
       line-height: 50px;
     }
     header p {
+      margin-top: 15px;
       font-family: Hack;
-      font-size: 20px;
+      font-size: 28px;
       text-align: center;
       color: #777;
     }
@@ -71,6 +73,8 @@
       for (let i = 0; i < code.length; i++) {
         const span = document.createElement('span');
         span.style.color = colors[code[i] - 1];
+        span.style.fontWeight = 'bold';
+        span.style.webkitTextStroke = '1px grey';
         span.innerHTML = ' ' + code[i];
         p.appendChild(span);
       }
