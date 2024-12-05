@@ -1,3 +1,4 @@
+import { NODE_START_INDEX } from '../../common/constants';
 import { INode } from './node.interface';
 
 export interface NodeOptions {
@@ -8,7 +9,7 @@ export interface NodeOptions {
   max: number;
 }
 export class Node implements INode {
-  private static lastIndex = 0;
+  private static lastIndex = NODE_START_INDEX;
 
   private _index: number;
   private _children: INode[];
@@ -41,7 +42,7 @@ export class Node implements INode {
 
   public info(): string {
     const childrenIndexes = this._children.map((child) => child.index);
-    if (childrenIndexes.length === 0) return `${this.index} - leaf`;
+    if (childrenIndexes.length === 0) return `${this.index}`;
     return `${this.index}: ${childrenIndexes.join(', ')}`;
   }
 }

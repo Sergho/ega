@@ -1,9 +1,8 @@
-import { config } from 'process';
-import { INPUT_FILE_EXCEPTION } from '../../constants/exceptions';
-import { Node } from '../../tree/node/node';
-import { INode } from '../../tree/node/node.interface';
-import { Tree } from '../../tree/tree';
-import { ITree } from '../../tree/tree.interface';
+import { INPUT_FILE_EXCEPTION } from '../common/exceptions';
+import { Node } from '../tree/node/node';
+import { INode } from '../tree/node/node.interface';
+import { Tree } from '../tree/tree';
+import { ITree } from '../tree/tree.interface';
 import { IFileReader } from './file-reader.interface';
 import * as fs from 'fs';
 

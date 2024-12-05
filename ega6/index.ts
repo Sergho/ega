@@ -1,5 +1,6 @@
-import { FileReader } from './src/file/reader/file-reader';
+import { INPUT_FILENAME } from './src/common/constants';
+import { FileReader } from './src/file-reader/file-reader';
 
-const reader = new FileReader('ega6/input.txt');
+const reader = new FileReader(INPUT_FILENAME);
 const tree = reader.read();
 console.log(tree.info());
