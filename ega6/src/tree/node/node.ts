@@ -45,4 +45,22 @@ export class Node implements INode {
     if (childrenIndexes.length === 0) return `${this.index}`;
     return `${this.index}: ${childrenIndexes.join(', ')}`;
   }
+
+  public reduce(): INode {
+    if (this._children.length === 0) {
+      return new Node({ min: this.min, max: this.max });
+    }
+
+    const sumMin = this._children.reduce(
+      (prev, current) => new Node({ min: prev.min + current.min, max: 0 })
+    ).min;
+    const sumMax = this._children.reduce(
+      (prev, current) => new Node({ min: 0, max: prev.max + current.max })
+    ).max;
+
+    return new Node({
+      min: Math.max(this.min, sumMin),
+      max: Math.min(this.max, sumMax),
+    });
+  }
 }

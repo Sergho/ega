@@ -11,14 +11,34 @@ export class Tree implements ITree {
   public constructor(root?: INode) {
     this._root = root;
   }
-
-  public info(): string {
-    let report = this._root.info();
+  public getNodes(): INode[] {
+    const nodes: INode[] = [this._root];
     const subTrees = this._root.children.map((child) => new Tree(child));
     for (const subTree of subTrees) {
-      report += '\n' + subTree.info();
+      nodes.push(...subTree.getNodes());
     }
+    return nodes;
+  }
 
+  public info(): string {
+    const nodes = this.getNodes();
+
+    let report = '';
+    for (const node of nodes) {
+      report += node.info() + '\n';
+    }
     return report;
+  }
+
+  public isCompatible(): boolean {
+    const nodes = this.getNodes();
+    const reducedNodes: INode[] = [];
+    for (const node of nodes) {
+      reducedNodes.push(node.reduce());
+    }
+    for (const node of reducedNodes) {
+      if (node.min > node.max) return false;
+    }
+    return true;
   }
 }
