@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      outline: none;
+    }
+    body {
+      overflow: hidden;
+      background-color: #ddd;
+    }
+    header {
+      box-sizing: border-box;
+      margin-top: 10px;
+      height: 70px;
+    }
+    header h1 {
+      font-size: 36px;
+      font-family: Hack;
+      color: #555;
+      text-align: center;
+      line-height: 50px;
+    }
+    header p {
+      margin-top: 15px;
+      font-family: Hack;
+      font-size: 28px;
+      text-align: center;
+      color: #777;
+    }
+    canvas {
+      margin-top: 170px;
+      margin-bottom: 150px;
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 400px);
+    }
+  </style>
+  <body>
+    <header>
+      <h1>График Ганта</h1>
+      <p>Перестановка:</p>
+    </header>
+    <canvas></canvas>
+  </body>
+  <script src="jquery.js"></script>
+  <script>
+    const colors = [
+      'red',
+      'green',
+      'blue',
+      'orange',
+      'magenta',
+      'yellow',
+      'maroon',
+      'cyan',
+      'lime',
+      'grey',
+      'chartreuse',
+      'gold',
+      'lightcoral',
+      'orangered',
+      'teal',
+    ];
+    function updateSpans(code) {
+      const p = document.querySelector('p');
+      for (let i = 0; i < code.length; i++) {
+        const span = document.createElement('span');
+        span.style.color = colors[code[i] - 1];
+        span.style.fontWeight = 'bold';
+        span.style.webkitTextStroke = '1px grey';
+        span.innerHTML = ' ' + code[i];
+        p.appendChild(span);
+      }
+    }
+    function getCellSize(startTimes, executionTimes) {
+      let maxIndex = 0;
+      for (let i = 0; i < startTimes.length; i++) {
+        for (let j = 0; j < startTimes[i].length; j++) {
+          const index = startTimes[i][j] + executionTimes[i][j];
+          if (index > maxIndex) {
+            maxIndex = index;
+          }
+        }
+      }
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      let dpr = window.devicePixelRatio || 1;
+      canvas.width = canvas.offsetWidth * dpr;
+      canvas.height = canvas.offsetHeight * dpr;
+      ctx.scale(dpr, dpr);
+      return [canvas.width / maxIndex, canvas.height / startTimes[0].length];
+    }
+    function updateCanvas(startTimes, executionTimes) {
+      const cellSize = getCellSize(startTimes, executionTimes);
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+
+      ctx.strokeStyle = 'black';
+
+      for (let i = 0; i < startTimes.length; i++) {
+        for (let j = 0; j < startTimes[i].length; j++) {
+          for (let k = 0; k < executionTimes[i][j]; k++) {
+            const x = (k + startTimes[i][j]) * cellSize[0];
+            const y = j * cellSize[1];
+            ctx.fillStyle = colors[i];
+            ctx.fillRect(x, y, cellSize[0], cellSize[1]);
+            ctx.strokeRect(x, y, cellSize[0], cellSize[1]);
+          }
+        }
+      }
+    }
+    addEventListener('DOMContentLoaded', (event) => {
+      $.ajax({
+        url: '/report',
+        method: 'get',
+        dataType: 'json',
+        success: (data) => {
+          console.log(data);
+          updateSpans(data.code);
+          updateCanvas(data.startTimes, data.executionTimes);
+        },
+      });
+    });
+  </script>
+</html>
