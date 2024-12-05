@@ -22,10 +22,10 @@ export class FileReader implements IFileReader {
   }
   private createNodes(configs: string[]): INode[] {
     const nodes: Node[] = [];
-    for (const config of configs) {
-      const elems = config.split(' ');
+    for (let i = 0; i < configs.length; i++) {
+      const elems = configs[i].split(' ');
       if (elems.length < 2) throw INPUT_FILE_EXCEPTION;
-      nodes.push(new Node({ min: +elems[0], max: +elems[1] }));
+      nodes.push(new Node({ min: +elems[0], max: +elems[1], index: i }));
     }
 
     return nodes;

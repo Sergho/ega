@@ -26,8 +26,10 @@ export class Node implements INode {
   }
 
   public constructor(options: NodeOptions) {
-    this._index = Node.lastIndex;
-    Node.lastIndex++;
+    this._index = options.index ? options.index : 0;
+
+    this.min = options.min;
+    this.max = options.max;
 
     this.parent = options.parent;
     this._children = options.children ? [...options.children] : [];
@@ -41,14 +43,15 @@ export class Node implements INode {
   }
 
   public info(): string {
+    const span = `${this.index} [${this.min}, ${this.max}]`;
     const childrenIndexes = this._children.map((child) => child.index);
-    if (childrenIndexes.length === 0) return `${this.index}`;
-    return `${this.index}: ${childrenIndexes.join(', ')}`;
+    if (childrenIndexes.length === 0) return span;
+    return `${span}: ${childrenIndexes.join(', ')}`;
   }
 
   public reduce(): INode {
     if (this._children.length === 0) {
-      return new Node({ min: this.min, max: this.max });
+      return new Node({ min: this.min, max: this.max, index: this._index });
     }
 
     const sumMin = this._children.reduce(
@@ -61,6 +64,7 @@ export class Node implements INode {
     return new Node({
       min: Math.max(this.min, sumMin),
       max: Math.min(this.max, sumMax),
+      index: this._index,
     });
   }
 }

@@ -1,3 +1,4 @@
+import { Node } from './node/node';
 import { INode } from './node/node.interface';
 import { ITree } from './tree.interface';
 
@@ -33,8 +34,17 @@ export class Tree implements ITree {
   public isCompatible(): boolean {
     const nodes = this.getNodes();
     const reducedNodes: INode[] = [];
-    for (const node of nodes) {
-      reducedNodes.push(node.reduce());
+    for (const node of nodes.reverse()) {
+      const reducedNode = new Node({
+        min: node.min,
+        max: node.max,
+        index: node.index,
+      });
+      const children = node.children.map((child) =>
+        reducedNodes.find((node) => node.index == child.index)
+      );
+      reducedNode.appendChildren(children);
+      reducedNodes.push(reducedNode.reduce());
     }
     for (const node of reducedNodes) {
       if (node.min > node.max) return false;
