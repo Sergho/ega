@@ -4,13 +4,18 @@ export interface NodeOptions {
   index?: number;
   children?: INode[];
   parent?: INode;
+  min: number;
+  max: number;
 }
 export class Node implements INode {
-  private static lastIndex = 1;
+  private static lastIndex = 0;
 
   private _index: number;
-  private _children: INode[] = [];
+  private _children: INode[];
   public parent: INode;
+
+  public min: number;
+  public max: number;
 
   public get children(): INode[] {
     return [...this._children];
@@ -19,13 +24,12 @@ export class Node implements INode {
     return this._index;
   }
 
-  public constructor(options?: NodeOptions) {
+  public constructor(options: NodeOptions) {
     this._index = Node.lastIndex;
     Node.lastIndex++;
 
-    if (!options) return;
     this.parent = options.parent;
-    this._children = [...options.children];
+    this._children = options.children ? [...options.children] : [];
   }
 
   public appendChildren(children: INode[]): void {

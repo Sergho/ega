@@ -1,4 +1,7 @@
 export interface INode {
+  min: number;
+  max: number;
+
   parent: INode;
 
   appendChildren(children: INode[]): void;
