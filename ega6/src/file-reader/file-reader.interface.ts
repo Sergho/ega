@@ -1,5 +1,7 @@
 import { ITree } from '../tree/tree.interface';
+import { NodeDto } from './file-reader';
 
 export interface IFileReader {
-  read(): ITree;
+  read(): NodeDto[];
+  buildTree(): ITree;
 }

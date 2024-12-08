@@ -1,6 +1,7 @@
 export interface INode {
   min: number;
   max: number;
+  price: number;
 
   parent: INode;
 

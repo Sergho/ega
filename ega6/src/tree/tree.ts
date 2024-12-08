@@ -37,6 +37,7 @@ export class Tree implements ITree {
         new Node({
           min: this._root.min,
           max: this._root.max,
+          price: this._root.price,
           index: this._root.index,
         })
       );
@@ -58,6 +59,7 @@ export class Tree implements ITree {
       new Node({
         min: Math.max(this._root.min, minSum),
         max: Math.min(this._root.max, maxSum),
+        price: this._root.price,
         index: this._root.index,
       })
     );
