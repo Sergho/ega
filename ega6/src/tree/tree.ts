@@ -1,4 +1,5 @@
 import { INode } from './node/node.interface';
+import { Optimizer, OptimizerResult } from './optimizer/optimizer';
 import { Reducer } from './reducer/reducer';
 import { ITree } from './tree.interface';
 
@@ -20,7 +21,18 @@ export class Tree implements ITree {
     }
     return nodes;
   }
-
+  public getLeaves(): INode[] {
+    const nodes = this.getNodes();
+    const leaves: INode[] = [];
+    for (const node of nodes) {
+      if (node.children.length === 0) leaves.push(node);
+    }
+    return leaves;
+  }
+  public getPath(leaf: INode): INode[] {
+    if (!leaf.parent) return [leaf];
+    return [leaf, ...this.getPath(leaf.parent)];
+  }
   public info(): string {
     const nodes = this.getNodes();
 
@@ -30,13 +42,14 @@ export class Tree implements ITree {
     }
     return report;
   }
-
-  public reduced(): ITree {
-    return Reducer.reduce(this);
-  }
-
   public isCompatible(): boolean {
     const reduced = this.reduced();
     return reduced.root.min <= reduced.root.max;
+  }
+  public reduced(): ITree {
+    return Reducer.reduce(this);
+  }
+  public optimized(): OptimizerResult[] {
+    return Optimizer.optimize(this);
   }
 }
