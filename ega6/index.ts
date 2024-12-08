@@ -6,3 +6,5 @@ const tree = reader.read();
 console.log(tree.info());
 
 console.log(tree.isCompatible());
+
+console.log(tree.reduced().info());

@@ -8,6 +8,5 @@ export interface INode {
   get children(): INode[];
   get index(): number;
 
-  reduce(): INode;
   info(): string;
 }

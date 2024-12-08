@@ -31,24 +31,42 @@ export class Tree implements ITree {
     return report;
   }
 
-  public isCompatible(): boolean {
-    const nodes = this.getNodes();
-    const reducedNodes: INode[] = [];
-    for (const node of nodes.reverse()) {
-      const reducedNode = new Node({
-        min: node.min,
-        max: node.max,
-        index: node.index,
-      });
-      const children = node.children.map((child) =>
-        reducedNodes.find((node) => node.index == child.index)
+  public reduced(): ITree {
+    if (this._root.children.length === 0) {
+      return new Tree(
+        new Node({
+          min: this._root.min,
+          max: this._root.max,
+          index: this._root.index,
+        })
       );
-      reducedNode.appendChildren(children);
-      reducedNodes.push(reducedNode.reduce());
     }
-    for (const node of reducedNodes) {
-      if (node.min > node.max) return false;
-    }
-    return true;
+
+    const newChildren = this._root.children.map((child) => {
+      const subTree = new Tree(child);
+      return subTree.reduced().root;
+    });
+
+    const minSum = newChildren.reduce(
+      (prev, current) => new Node({ min: prev.min + current.min, max: 0 })
+    ).min;
+    const maxSum = newChildren.reduce(
+      (prev, current) => new Node({ min: 0, max: prev.max + current.max })
+    ).max;
+
+    const newTree = new Tree(
+      new Node({
+        min: Math.max(this._root.min, minSum),
+        max: Math.min(this._root.max, maxSum),
+        index: this._root.index,
+      })
+    );
+    newTree._root.appendChildren(newChildren);
+    return newTree;
+  }
+
+  public isCompatible(): boolean {
+    const reduced = this.reduced();
+    return reduced.root.min <= reduced.root.max;
   }
 }

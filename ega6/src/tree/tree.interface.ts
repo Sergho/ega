@@ -5,4 +5,5 @@ export interface ITree {
   info(): string;
   isCompatible(): boolean;
   getNodes(): INode[];
+  reduced(): ITree;
 }
