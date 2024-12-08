@@ -1,5 +1,5 @@
-import { Node } from './node/node';
 import { INode } from './node/node.interface';
+import { Reducer } from './reducer/reducer';
 import { ITree } from './tree.interface';
 
 export class Tree implements ITree {
@@ -32,39 +32,7 @@ export class Tree implements ITree {
   }
 
   public reduced(): ITree {
-    if (this._root.children.length === 0) {
-      return new Tree(
-        new Node({
-          min: this._root.min,
-          max: this._root.max,
-          price: this._root.price,
-          index: this._root.index,
-        })
-      );
-    }
-
-    const newChildren = this._root.children.map((child) => {
-      const subTree = new Tree(child);
-      return subTree.reduced().root;
-    });
-
-    const minSum = newChildren.reduce(
-      (prev, current) => new Node({ min: prev.min + current.min, max: 0 })
-    ).min;
-    const maxSum = newChildren.reduce(
-      (prev, current) => new Node({ min: 0, max: prev.max + current.max })
-    ).max;
-
-    const newTree = new Tree(
-      new Node({
-        min: Math.max(this._root.min, minSum),
-        max: Math.min(this._root.max, maxSum),
-        price: this._root.price,
-        index: this._root.index,
-      })
-    );
-    newTree._root.appendChildren(newChildren);
-    return newTree;
+    return Reducer.reduce(this);
   }
 
   public isCompatible(): boolean {
