@@ -17,8 +17,8 @@ export class Optimizer {
         index: leaf.index,
         value,
       });
+      this.decrementPath(tree, leaf, value);
       tree.removeLeaf(leaf);
-      // TODO decrement tree
     }
     return result;
   }
@@ -42,5 +42,12 @@ export class Optimizer {
     );
     const mins = filtered.map((node) => node.min);
     return mins.reduce((prev, curr) => prev + curr, 0);
+  }
+  private static decrementPath(tree: ITree, leaf: INode, value: number): void {
+    const path = tree.getPath(leaf);
+    for (const node of path) {
+      node.min -= value;
+      node.max -= value;
+    }
   }
 }
