@@ -1,5 +1,4 @@
 import { INode } from './node/node.interface';
-import { OptimizerResult } from './optimizer/optimizer';
 
 export interface ITree {
   get root(): INode;
@@ -10,5 +9,6 @@ export interface ITree {
   isCompatible(): boolean;
   removeLeaf(leaf: INode): void;
   reduced(): ITree;
-  calcOptimum(): void;
+  optimal(): { index: number; value: number }[];
+  optimum(): number;
 }

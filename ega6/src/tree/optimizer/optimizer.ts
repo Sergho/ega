@@ -2,23 +2,16 @@ import { INode } from '../node/node.interface';
 import { Tree } from '../tree';
 import { ITree } from '../tree.interface';
 
-export interface OptimizerResult {
-  index: number;
-  value: number;
-}
 export class Optimizer {
-  public static optimize(tree: ITree): OptimizerResult[] {
+  public static optimize(tree: ITree): number[] {
     const clone = new Tree(tree.root.copy());
     const leaves = clone.getLeaves();
 
-    const result: OptimizerResult[] = [];
+    const result: number[] = [];
     for (const leaf of this.sortLeaves(leaves)) {
       const reducedTree = clone.reduced();
       const value = this.calcValue(reducedTree, leaf);
-      result.push({
-        index: leaf.index,
-        value,
-      });
+      result[leaf.index] = value;
       this.decrementPath(clone, leaf, value);
       clone.removeLeaf(leaf);
     }

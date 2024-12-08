@@ -1,5 +1,5 @@
 import { INode } from './node/node.interface';
-import { Optimizer, OptimizerResult } from './optimizer/optimizer';
+import { Optimizer } from './optimizer/optimizer';
 import { Reducer } from './reducer/reducer';
 import { ITree } from './tree.interface';
 
@@ -53,8 +53,32 @@ export class Tree implements ITree {
   public reduced(): ITree {
     return Reducer.reduce(this);
   }
-  public calcOptimum(): void {
-    const leavesOptimal = Optimizer.optimize(this);
+  public optimal(): { index: number; value: number }[] {
+    const optimal = Optimizer.optimize(this);
     const leaves = this.getLeaves();
+
+    const result: { index: number; value: number }[] = [];
+    for (const leaf of leaves) {
+      result.push({
+        index: leaf.index,
+        value: optimal[leaf.index],
+      });
+    }
+    return result;
+  }
+  public optimum(): number {
+    const optimal = Optimizer.optimize(this);
+    return this.calcOptimum(optimal);
+  }
+  private calcOptimum(optimal: number[]): number {
+    if (optimal[this.root.index])
+      return optimal[this.root.index] * this._root.price;
+
+    let sum = 0;
+    for (const child of this._root.children) {
+      const subTree = new Tree(child);
+      sum += subTree.calcOptimum(optimal);
+    }
+    return sum;
   }
 }
