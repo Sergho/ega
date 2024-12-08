@@ -11,4 +11,5 @@ export interface INode {
   get index(): number;
 
   info(): string;
+  copy(): INode;
 }

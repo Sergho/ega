@@ -10,5 +10,5 @@ export interface ITree {
   isCompatible(): boolean;
   removeLeaf(leaf: INode): void;
   reduced(): ITree;
-  optimized(): OptimizerResult[];
+  calcOptimum(): void;
 }

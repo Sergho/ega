@@ -54,4 +54,17 @@ export class Node implements INode {
     if (childrenIndexes.length === 0) return span;
     return `${span}: ${childrenIndexes.join(', ')}`;
   }
+  public copy(): INode {
+    const newNode = new Node({
+      min: this.min,
+      max: this.max,
+      price: this.price,
+      index: this.index,
+    });
+    if (this._children.length === 0) return newNode;
+
+    const newChildren = this._children.map((child) => child.copy());
+    newNode.appendChildren(newChildren);
+    return newNode;
+  }
 }

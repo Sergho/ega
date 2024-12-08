@@ -1,4 +1,5 @@
 import { INode } from '../node/node.interface';
+import { Tree } from '../tree';
 import { ITree } from '../tree.interface';
 
 export interface OptimizerResult {
@@ -7,18 +8,19 @@ export interface OptimizerResult {
 }
 export class Optimizer {
   public static optimize(tree: ITree): OptimizerResult[] {
-    const leaves = tree.getLeaves();
+    const clone = new Tree(tree.root.copy());
+    const leaves = clone.getLeaves();
 
     const result: OptimizerResult[] = [];
     for (const leaf of this.sortLeaves(leaves)) {
-      const reducedTree = tree.reduced();
+      const reducedTree = clone.reduced();
       const value = this.calcValue(reducedTree, leaf);
       result.push({
         index: leaf.index,
         value,
       });
-      this.decrementPath(tree, leaf, value);
-      tree.removeLeaf(leaf);
+      this.decrementPath(clone, leaf, value);
+      clone.removeLeaf(leaf);
     }
     return result;
   }

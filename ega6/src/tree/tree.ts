@@ -53,7 +53,8 @@ export class Tree implements ITree {
   public reduced(): ITree {
     return Reducer.reduce(this);
   }
-  public optimized(): OptimizerResult[] {
-    return Optimizer.optimize(this);
+  public calcOptimum(): void {
+    const leavesOptimal = Optimizer.optimize(this);
+    const leaves = this.getLeaves();
   }
 }

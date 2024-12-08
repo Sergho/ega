@@ -3,4 +3,5 @@ import { FileReader } from './src/file-reader/file-reader';
 
 const reader = new FileReader(INPUT_FILENAME);
 const tree = reader.buildTree();
-console.log(tree.optimized());
+tree.calcOptimum();
+console.log(tree.info());
