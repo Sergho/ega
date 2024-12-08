@@ -8,6 +8,7 @@ export interface ITree {
   getPath(leaf: INode): INode[];
   info(): string;
   isCompatible(): boolean;
+  removeLeaf(leaf: INode): void;
   reduced(): ITree;
   optimized(): OptimizerResult[];
 }

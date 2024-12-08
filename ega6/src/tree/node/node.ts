@@ -41,7 +41,11 @@ export class Node implements INode {
       child.parent = this;
     }
   }
+  public removeChild(child: INode): void {
+    if (!this.children.includes(child)) return;
 
+    this._children = this.children.filter((node) => node.index !== child.index);
+  }
   public info(): string {
     let span = `${this.index} [${this.min}, ${this.max}]`;
     if (this.price) span += ` - ${this.price}`;

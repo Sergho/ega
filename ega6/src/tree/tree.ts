@@ -33,6 +33,10 @@ export class Tree implements ITree {
     if (!leaf.parent) return [leaf];
     return [leaf, ...this.getPath(leaf.parent)];
   }
+  public removeLeaf(leaf: INode): void {
+    if (leaf.children.length !== 0) return null;
+    leaf.parent.removeChild(leaf);
+  }
   public info(): string {
     const nodes = this.getNodes();
 

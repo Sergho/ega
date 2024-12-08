@@ -6,6 +6,7 @@ export interface INode {
   parent: INode;
 
   appendChildren(children: INode[]): void;
+  removeChild(child: INode): void;
   get children(): INode[];
   get index(): number;
 

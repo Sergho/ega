@@ -41,12 +41,14 @@ export class Reducer {
   }
   private static minSum(nodes: INode[]) {
     return nodes.reduce(
-      (prev, current) => new Node({ min: prev.min + current.min, max: 0 })
+      (prev, current) => new Node({ min: prev.min + current.min, max: 0 }),
+      new Node({ min: 0, max: 0 })
     ).min;
   }
   private static maxSum(nodes: INode[]) {
     return nodes.reduce(
-      (prev, current) => new Node({ min: 0, max: prev.max + current.max })
+      (prev, current) => new Node({ min: 0, max: prev.max + current.max }),
+      new Node({ min: 0, max: 0 })
     ).max;
   }
 }

@@ -17,8 +17,7 @@ export class Optimizer {
         index: leaf.index,
         value,
       });
-      break;
-      // TODO remove leaf from tree
+      tree.removeLeaf(leaf);
       // TODO decrement tree
     }
     return result;
@@ -42,6 +41,6 @@ export class Optimizer {
       (child) => !pathIndexes.includes(child.index)
     );
     const mins = filtered.map((node) => node.min);
-    return mins.reduce((prev, curr) => prev + curr);
+    return mins.reduce((prev, curr) => prev + curr, 0);
   }
 }
