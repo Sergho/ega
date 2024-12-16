@@ -46,7 +46,9 @@ export class EGA implements IEGA {
   private populationInfo(): PopulationInfo {
     return {
       index: this._populationIndex,
-      avg: this._population.map((i) => i.fitness()).reduce((a, b) => a + b, 0),
+      avg:
+        this._population.map((i) => i.fitness()).reduce((a, b) => a + b, 0) /
+        this._population.length,
       min: Math.min(...this._population.map((i) => i.fitness())),
     };
   }
