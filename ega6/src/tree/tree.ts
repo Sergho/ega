@@ -11,7 +11,7 @@ export class Tree implements ITree {
   }
 
   public constructor(root?: INode) {
-    this._root = root;
+    if (root) this._root = root;
   }
   public getNodes(): INode[] {
     const nodes: INode[] = [this._root];
@@ -34,7 +34,7 @@ export class Tree implements ITree {
     return [leaf, ...this.getPath(leaf.parent)];
   }
   public removeLeaf(leaf: INode): void {
-    if (leaf.children.length !== 0) return null;
+    if (leaf.children.length !== 0) return;
     leaf.parent.removeChild(leaf);
   }
   public info(): string {
